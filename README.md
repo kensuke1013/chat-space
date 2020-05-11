@@ -1,49 +1,48 @@
-# Qiita DB設計
-## usersテーブル
-|Column|Type|Options|
-|------|----|-------|
-|email|string|null: false|
-|password|string|null: false|
-|username|string|null: false|
-### Association
-- has_many :posts
-- has_many :comments
+## groups_usersテーブル
 
-## postsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|title|text|null: false|
-|text|text|null: false|
-|user_id|integer|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
+
 ### Association
+- belongs_to :group
 - belongs_to :user
-- has_many :comments
-- has_many :posts_tags
-- has_many  :tags,  through:  :posts_tags
 
-## tagsテーブル
+
+## groupsテーブル
+
 |Column|Type|Options|
 |------|----|-------|
-|text|text|null: false|
-### Association
-- has_many :posts_tags
-- has_many  :posts,  through:  :posts_tags
+|name|string|null: false|
 
-## posts_tagsテーブル
+### Association
+- has_many :messages
+- has_many :users,through:groups_users
+- has_many :groups_users
+
+## usersテーブル
+
 |Column|Type|Options|
 |------|----|-------|
-|post_id|integer|null: false, foreign_key: true|
-|tag_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :post
-- belongs_to :tag
+|name|string|null: false, foreign_key: true|
+|e-mail|string|null: false|
+|passward|string|null: false|
 
-## commentsテーブル
+### Association
+- has_many :messages
+- has_many :groups,through:groups_users
+- has_many :groups_users
+
+## messagesテーブル
+
 |Column|Type|Options|
 |------|----|-------|
-|text|text|null: false|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
+|text|text||
+|picture|text||
+
 ### Association
-- belongs_to :post
+- belongs_to :group
 - belongs_to :user

@@ -18,20 +18,20 @@
 
 ### Association
 - has_many :messages
-- has_many :users,through:groups_users
+- has_many :users,through: :groups_users
 - has_many :groups_users
 
 ## usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|e-mail|string|null: false|
+|name|string|null: false, index: true|
+|e_mail|string|null: false|
 |passward|string|null: false|
 
 ### Association
 - has_many :messages
-- has_many :groups,through:groups_users
+- has_many :groups,through: :groups_users
 - has_many :groups_users
 
 ## messagesテーブル

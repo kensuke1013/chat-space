@@ -25,7 +25,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, foreign_key: true|
+|name|string|null: false|
 |e-mail|string|null: false|
 |passward|string|null: false|
 

@@ -1,19 +1,19 @@
 .chat
-    .header
-        .left-header
-        .left-header__title
+  .header
+    .left-header
+      .left-header__title
         = @group.name
-        %left-header__members
+      .left-header__members
         Member：
         %member
         - @group.users.each do |user|
-            = user.name
-        .right-header
-            .right-header__button
-                = link_to 'Edit', edit_group_path(@group) 
+          = user.name
+    .right-header
+      .right-header__button
+      = link_to 'Edit', edit_group_path(@group) 
 
-    .messages
-        = render @messages
+  .messages
+    = render @messages
     -#   .message
     -#     .upper-message
     -#       .upper-message__user-name
@@ -42,12 +42,12 @@
     -#       .lower-message__content
     -#         メッセージ
 
-    .form
-        = form_for [@group, @message] do |f|
-            = f.text_field :content, class: 'form__message', placeholder: 'type a message'
-            .form__mask
-                = f.label :image, class: 'form__mask__image' do
-                    = icon('fas', 'image', class: 'icon')
-                    = f.file_field :image, class: 'hidden'
-            = f.submit 'Send', class: 'form__submit'
+  .form
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+      .form__mask
+        = f.label :image, class: 'form__mask__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'form__submit'
 
